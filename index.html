@@ -1,153 +1,103 @@
-// This file is a TypeScript React component (TSX).
-// Reason: your environment previously tried to parse an HTML file as index.tsx and produced
-// "Unexpected token (1:0)". To fix that, I replaced the raw HTML with a valid TSX component.
-// Save this file as `index.tsx` in a React / Next.js project (e.g. `src/pages/index.tsx` for Next.js
-// or `src/App.tsx` for CRA). If you instead want a plain `index.html`, tell me and I'll add that
-// as a separate file.
-
-import React from "react";
-
-type MenuItem = {
-  name: string;
-  desc: string;
-  price: string;
-  img: string;
-};
-
-const css = `
-:root{--yellow:#FFD60A;--bg:#fafafa;--text:#222}
-*{box-sizing:border-box}
-html,body,#root{height:100%}
-body{margin:0;font-family:Poppins, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text)}
-header{position:sticky;top:0;background:white;border-bottom:1px solid #eee;z-index:100}
-.header-container{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem}
-.header-container h1{font-size:1.1rem;margin:0}
-nav a{margin:0 0.6rem;text-decoration:none;color:#333;font-weight:500}
-.hero{position:relative;background-image:url('https://images.unsplash.com/photo-1459666644539-a9755287d6b0?q=80&w=2000&auto=format&fit=crop');background-size:cover;background-position:center;color:white;text-align:center;padding:6rem 1rem}
-.hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.6)}
-.hero > .inner{position:relative;z-index:1;max-width:1100px;margin:0 auto}
-.hero h1{font-size:2.5rem;margin:0}
-.hero p{margin-top:1rem;max-width:700px;margin-left:auto;margin-right:auto}
-.btn{display:inline-block;padding:0.75rem 1.25rem;margin:0.5rem;border-radius:6px;text-decoration:none;font-weight:600}
-.btn-primary{background:var(--yellow);color:#000}
-.btn-outline{border:2px solid white;color:white;background:transparent}
-.section{padding:4rem 1rem;max-width:1200px;margin:0 auto}
-.section h2{font-size:2rem;margin-bottom:0.5rem}
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem}
-.card{border:1px solid #eee;border-radius:10px;overflow:hidden;background:white;box-shadow:0 2px 6px rgba(0,0,0,0.05)}
-.card img{width:100%;height:180px;object-fit:cover}
-.card-content{padding:1rem}
-.card-content h3{margin:0 0 0.5rem 0;font-size:1.15rem}
-.footer{background:#111;color:#aaa;padding:2rem;text-align:center}
-.footer a{color:var(--yellow);text-decoration:none}
-@media (max-width:640px){
-  .header-container{padding:0.75rem 1rem}
-  .hero{padding:4rem 1rem}
-  .hero h1{font-size:1.6rem}
-}
-`;
-
-const menu: MenuItem[] = [
-  {
-    name: "Texas Brisket",
-    desc: "Slow-smoked 12+ hours over hickory. Tender, juicy, unforgettable.",
-    price: "$15.99",
-    img: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "Pulled Pork",
-    desc: "Classic, smoky, hand-pulled goodness—perfect on a plate or a bun.",
-    price: "$12.49",
-    img: "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "St. Louis Ribs",
-    desc: "Fall-off-the-bone ribs with a lacquered finish and light char.",
-    price: "$19.95",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "Pit Plates",
-    desc: "Any two meats + two sides. BBQ your way.",
-    price: "$17.99",
-    img: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1200&auto=format&fit=crop",
-  },
-];
-
-const DickeysDemo: React.FC = () => {
-  return (
-    <div>
-      {/* Inject global CSS so this TSX file is self-contained */}
-      <style>{css}</style>
-
-      <header>
-        <div className="header-container">
-          <h1>Dickey's Demo</h1>
-          <nav>
-            <a href="#menu">Menu</a>
-            <a href="#order">Order</a>
-            <a href="#catering">Catering</a>
-            <a href="#locations">Locations</a>
-            <a href="#about">About</a>
-          </nav>
-        </div>
-      </header>
-
-      <main>
-        <section className="hero" aria-label="Hero">
-          <div className="inner">
-            <h1>
-              Authentic Texas BBQ, <span style={{ color: "var(--yellow)" }}>Slow-Smoked</span> Since 1941
-            </h1>
-            <p>
-              Brisket, ribs, and classic sides—crafted by pitmasters and served with Southern hospitality.
-            </p>
-            <div style={{ marginTop: 16 }}>
-              <a className="btn btn-primary" href="#order">
-                Order Now
-              </a>
-              <a className="btn btn-outline" href="#menu">
-                Explore Menu
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section id="menu" className="section" aria-label="Menu Highlights">
-          <h2>Menu Highlights</h2>
-          <p>A taste of our pit—crafted plates that keep guests coming back.</p>
-
-          <div className="menu-grid" style={{ marginTop: 16 }}>
-            {menu.map((item) => (
-              <article key={item.name} className="card">
-                <img src={item.img} alt={item.name} />
-                <div className="card-content">
-                  <h3>{item.name}</h3>
-                  <p style={{ margin: "0.25rem 0 0.5rem 0" }}>{item.desc}</p>
-                  <p style={{ margin: 0, fontWeight: 700 }}>{item.price}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="about" className="section" aria-label="About">
-          <h2>Tradition, Fire, and Family</h2>
-          <p>
-            Since 1941, pitmasters have carried on a simple promise: quality meats, slow-smoked low and slow,
-            with sides that taste like home. This refreshed digital experience puts that promise front and
-            center—making it faster to order, easier to find a store, and more fun to explore the menu.
-          </p>
-        </section>
-      </main>
-
-      <footer className="footer">
-        <p>
-          © {new Date().getFullYear()} Demo by Your Agency • <a href="#">Not affiliated with Dickey's</a>
-        </p>
-      </footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dickey’s Barbecue Pit Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Poppins', sans-serif; background: #fafafa; color: #222; }
+    header { position: sticky; top: 0; background: white; border-bottom: 1px solid #eee; z-index: 100; }
+    .header-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    nav a { margin: 0 1rem; text-decoration: none; color: #333; font-weight: 500; }
+    .hero { position: relative; background: url('https://images.unsplash.com/photo-1459666644539-a9755287d6b0?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat; color: white; text-align: center; padding: 6rem 2rem; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+    .hero > div { position: relative; z-index: 1; }
+    .hero h1 { font-size: 2.5rem; max-width: 700px; margin: 0 auto; }
+    .hero p { margin-top: 1rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; margin: 0.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; }
+    .btn-primary { background: #FFD60A; color: #000; }
+    .btn-outline { border: 2px solid white; color: white; }
+    .section { padding: 4rem 2rem; max-width: 1200px; margin: auto; }
+    .section h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    .card img { width: 100%; height: 180px; object-fit: cover; }
+    .card-content { padding: 1rem; }
+    .card-content h3 { margin: 0; font-size: 1.2rem; }
+    footer { background: #111; color: #aaa; padding: 2rem; text-align: center; }
+    footer a { color: #FFD60A; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1 style="font-size:1.2rem; font-weight:700;">Dickey’s Demo</h1>
+      <nav>
+        <a href="#menu">Menu</a>
+        <a href="#order">Order</a>
+        <a href="#catering">Catering</a>
+        <a href="#locations">Locations</a>
+        <a href="#about">About</a>
+      </nav>
     </div>
-  );
-};
+  </header>
 
-export default DickeysDemo;
+  <section class="hero">
+    <div>
+      <h1>Authentic Texas BBQ, <span style="color:#FFD60A;">Slow-Smoked</span> Since 1941</h1>
+      <p>Brisket, ribs, and classic sides—crafted by pitmasters and served with Southern hospitality.</p>
+      <a href="#order" class="btn btn-primary">Order Now</a>
+      <a href="#menu" class="btn btn-outline">Explore Menu</a>
+    </div>
+  </section>
+
+  <section id="menu" class="section">
+    <h2>Menu Highlights</h2>
+    <p>A taste of our pit—crafted plates that keep guests coming back.</p>
+    <div class="menu-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop" alt="Texas Brisket">
+        <div class="card-content">
+          <h3>Texas Brisket</h3>
+          <p>Slow-smoked 12+ hours over hickory. Tender, juicy, unforgettable.</p>
+          <p><strong>$15.99</strong></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?q=80&w=1200&auto=format&fit=crop" alt="Pulled Pork">
+        <div class="card-content">
+          <h3>Pulled Pork</h3>
+          <p>Classic, smoky, hand-pulled goodness—perfect on a plate or a bun.</p>
+          <p><strong>$12.49</strong></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop" alt="St. Louis Ribs">
+        <div class="card-content">
+          <h3>St. Louis Ribs</h3>
+          <p>Fall-off-the-bone ribs with a lacquered finish and light char.</p>
+          <p><strong>$19.95</strong></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1200&auto=format&fit=crop" alt="Pit Plates">
+        <div class="card-content">
+          <h3>Pit Plates</h3>
+          <p>Any two meats + two sides. BBQ your way.</p>
+          <p><strong>$17.99</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <h2>Tradition, Fire, and Family</h2>
+    <p>Since 1941, pitmasters have carried on a simple promise: quality meats, slow-smoked low and slow, with sides that taste like home. This refreshed digital experience puts that promise front and center—making it faster to order, easier to find a store, and more fun to explore the menu.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Demo by Your Agency • <a href="#">Not affiliated with Dickey’s</a></p>
+  </footer>
+</body>
+</html>
